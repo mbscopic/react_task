@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Button, FormControl, FormGroup, FormLabel} from "react-bootstrap";
+import '../Product/Product.css'
+import Hoc from "../../Hoc/Hoc";
 
 /*View and Edit features are handled only by this one component*/
 class ProductView extends Component{
@@ -39,33 +41,40 @@ class ProductView extends Component{
         let product = this.props.product
         let disabled = this.props.disabled
         return (
-            <Row>
-                <Col>
-                    <form onSubmit={this.submitHandler}>
-                        <FormGroup>
-                            <FormLabel>ID</FormLabel>
-                            <FormControl type="text" placeholder="Enter email" defaultValue={product.id} disabled={true}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl type="text" name="name" placeholder="Price" defaultValue={product.name} {...disabled ? disabled : ''} onChange={this.productHandler}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>Price</FormLabel>
-                            <FormControl type="text" name="price" placeholder="Price" defaultValue={product.price} {...disabled ? disabled : ''} onChange={this.productHandler}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>Description</FormLabel>
-                            <FormControl type="text" name="description" placeholder="Description" defaultValue={product.description} {...disabled ? disabled : ''} onChange={this.productHandler}/>
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel>Creation Date</FormLabel>
-                            <FormControl type="text" name="created_at" placeholder="Creation Date" defaultValue={product.created_at} {...disabled ? disabled : ''} onChange={this.productHandler}/>
-                        </FormGroup>
-                        {!disabled.disabled ? <Button type="submit" value="Save" >Save</Button> : <button className="btn btn-primary" onClick={this.submitHandler}>Back</button>}
-                    </form>
-                </Col>
-            </Row>
+            <Hoc>
+                <Row className="Product justify-content-md-center">
+                    <Col md="3">
+                        <h1>Product: {product.name}</h1>
+                    </Col>
+                </Row>
+                <Row className="Product justify-content-md-center">
+                    <Col md={6}>
+                        <form onSubmit={this.submitHandler}>
+                            <FormGroup>
+                                <FormLabel>ID</FormLabel>
+                                <FormControl type="text" placeholder="Enter email" defaultValue={product.id} disabled={true}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <FormLabel>Name</FormLabel>
+                                <FormControl type="text" name="name" placeholder="Price" defaultValue={product.name} {...disabled ? disabled : ''} onChange={this.productHandler}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <FormLabel>Price</FormLabel>
+                                <FormControl type="text" name="price" placeholder="Price" defaultValue={product.price} {...disabled ? disabled : ''} onChange={this.productHandler}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <FormLabel>Description</FormLabel>
+                                <FormControl type="text" name="description" placeholder="Description" defaultValue={product.description} {...disabled ? disabled : ''} onChange={this.productHandler}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <FormLabel>Creation Date</FormLabel>
+                                <FormControl type="date" name="created_at" placeholder="Creation Date" defaultValue={product.created_at} {...disabled ? disabled : ''} onChange={this.productHandler}/>
+                            </FormGroup>
+                            {!disabled.disabled ? <Button type="submit" value="Save" >Save</Button> : <button className="btn btn-primary" onClick={this.submitHandler}>Back</button>}
+                        </form>
+                    </Col>
+                </Row>
+            </Hoc>
         );
     }
 }
