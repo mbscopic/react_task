@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Container} from "react-bootstrap";
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-      <Container fluid>
-          <App />
-      </Container>
+      <BrowserRouter>
+          <Container fluid>
+              <App />
+          </Container>
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

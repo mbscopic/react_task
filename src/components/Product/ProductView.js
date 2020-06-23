@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';
 import {Button, FormControl, FormGroup, FormLabel} from "react-bootstrap";
-import '../Product/Product.css'
+import './product.css'
 import Hoc from "../../Hoc/Hoc";
 
 /*View and Edit features are handled only by this one component*/
@@ -34,7 +34,8 @@ class ProductView extends Component{
     /*Updates the state in Products component by updating the new product there*/
     submitHandler = (e) => {
         e.preventDefault()
-        this.props.updateProduct(this.state.product)
+            this.props.updateProduct(this.state.product, this.props.product !== this.state.product)
+
     }
 
     render() {
@@ -42,12 +43,12 @@ class ProductView extends Component{
         let disabled = this.props.disabled
         return (
             <Hoc>
-                <Row className="Product justify-content-md-center">
+                <Row className="product justify-content-md-center">
                     <Col md="3">
                         <h1>Product: {product.name}</h1>
                     </Col>
                 </Row>
-                <Row className="Product justify-content-md-center">
+                <Row className="product justify-content-md-center">
                     <Col md={6}>
                         <form onSubmit={this.submitHandler}>
                             <FormGroup>
@@ -56,7 +57,7 @@ class ProductView extends Component{
                             </FormGroup>
                             <FormGroup>
                                 <FormLabel>Name</FormLabel>
-                                <FormControl type="text" name="name" placeholder="Price" defaultValue={product.name} {...disabled ? disabled : ''} onChange={this.productHandler}/>
+                                <FormControl type="text" name="name" placeholder="Name" defaultValue={product.name} {...disabled ? disabled : ''} onChange={this.productHandler}/>
                             </FormGroup>
                             <FormGroup>
                                 <FormLabel>Price</FormLabel>
